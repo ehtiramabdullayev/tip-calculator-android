@@ -1,0 +1,33 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color color_best_tip
+color color_worst_tip
+color darker_blue
+color primary_blue
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id etBaseAmount
+id guideline2
+id seekBarTip
+id tvBaseLabel
+id tvFooter
+id tvTipAmount
+id tvTipDescription
+id tvTipLabel
+id tvTipPercentLabel
+id tvTotalAmount
+id tvTotalLabel
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.TipCalculator
+xml backup_rules
+xml data_extraction_rules
