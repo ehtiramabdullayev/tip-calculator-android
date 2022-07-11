@@ -10,9 +10,16 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.tipcalculator.logging.Keys.EMPTY_STRING
+import com.example.tipcalculator.logging.Keys.INITIAL_TIP_PERCENT
+import com.example.tipcalculator.logging.Keys.TAG
+import com.example.tipcalculator.logging.Keys.TIP_DESCRIPTION_ACCEPTABLE
+import com.example.tipcalculator.logging.Keys.TIP_DESCRIPTION_AMAZING
+import com.example.tipcalculator.logging.Keys.TIP_DESCRIPTION_GOOD
+import com.example.tipcalculator.logging.Keys.TIP_DESCRIPTION_GREAT
+import com.example.tipcalculator.logging.Keys.TIP_DESCRIPTION_POOR
+import com.example.tipcalculator.logging.Keys.TIP_FORMAT
 
-private const val TAG = "MainActivity"
-private const val INITIAL_TIP_PERCENT = 15
 
 class MainActivity : AppCompatActivity() {
     private lateinit var etBaseAmount: EditText
@@ -61,11 +68,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateTipDescription(tipPercent: Int) {
         val tipDescription = when(tipPercent){
-            in 0..9 -> "Poor"
-            in 10..14 -> "Acceptable"
-            in 15..19 -> "Good"
-            in 20..24 -> "Great"
-            else ->  "Amazing"
+            in 0..9 -> TIP_DESCRIPTION_POOR
+            in 10..14 -> TIP_DESCRIPTION_ACCEPTABLE
+            in 15..19 -> TIP_DESCRIPTION_GOOD
+            in 20..24 -> TIP_DESCRIPTION_GREAT
+            else ->  TIP_DESCRIPTION_AMAZING
         }
         tvTipDescription.text = tipDescription
         // update the color based on the tipPercent
@@ -79,15 +86,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun computeTipAndTotal() {
         if (etBaseAmount.text.isEmpty()) {
-            tvTipAmount.text = ""
-            tvTotalAmount.text = ""
+            tvTipAmount.text = EMPTY_STRING
+            tvTotalAmount.text = EMPTY_STRING
             return
         }
         val baseAmount = etBaseAmount.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
         val tipAmount = baseAmount * tipPercent / 100
         val totalAmount = baseAmount + tipAmount
-        tvTipAmount.text = "%.2f".format(tipAmount)
-        tvTotalAmount.text = "%.2f".format(totalAmount)
+        tvTipAmount.text = TIP_FORMAT.format(tipAmount)
+        tvTotalAmount.text = TIP_FORMAT.format(totalAmount)
     }
 }
